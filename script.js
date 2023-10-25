@@ -48,7 +48,7 @@ saveButtons.forEach(function(saveButton) {
     saveButton.addEventListener("click", function() {
         alert("Saved!");
         const timeBlockId = this.parentNode.id;
-        const textAreaValue = this.parentNode.querySelector(".description");
+        const textAreaValue = $(this).siblings(".description").val();
         localStorage.setItem(timeBlockId, textAreaValue);
 });
 });
@@ -64,15 +64,17 @@ saveButtons.forEach(function(saveButton) {
 // OK!! TODO: Add code to get any user input that was saved in localStorage and set
   // the values of the corresponding textarea elements. HINT: How can the id
   // attribute of each time-block be used to do this?
-   timeBlock.forEach(function(block) {
-   const timeBlockId = block.id;
-   const textarea = block.querySelector(".description");
+  $(".time-block").each(function(block) {
+    console.log($(this))
+    const timeBlockId = $(this).attr("id");
+   //  const textarea = block.querySelector(".description");
    const savedValue = localStorage.getItem(timeBlockId);
-
-   if (savedValue !== null) {
-   textarea.value = savedValue;
-   }
-   });
+    console.log(timeBlockId);
+     $(this).children(".description").val(savedValue);
+   //  if (savedValue !== null) {
+   //  textarea.value = savedValue;
+   //  }
+    });
 
   //
   // TODO: Add code to display the current date in the header of the page.
