@@ -20,17 +20,22 @@ let timeBlock;
 let block;
 
 timeBlock = document.querySelectorAll(".time-block")[0];
+$(".time-block").each(function () {
   const className = timeBlock.className;
-  const parts = className.split("-");
+  const parts = $(this).attr("id").split("-");
   const hour = parseInt(parts[1]);
+  
+console.log(hour);
+console.log(currentHour);
 
   if (hour < currentHour) {
-    block.classList.add("past");
+    $(this).addClass("past");
   } else if (hour === currentHour) {
-    block.classList.add("present");
+    $(this).addClass("present");
   } else {
-    block.classList.add("future");
+    $(this).addClass("future");
   }
+})
 });
 //^parsing the block's hour and comparing to current hour
 //to apply CSS past, present, future class additions
